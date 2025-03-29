@@ -1,3 +1,47 @@
-#heading{
-    color:red;
+.heading-logo{
+    width: 80px;
+    height:60px;
+
+}
+
+.header{
+    border:1px solid black;
+    display:flex;
+    justify-content: space-between;
+    padding:10px;
+    margin:10px;
+    background-color: black;
+}
+.nav-list{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color:burlywood
+}
+
+.card{
+  
+    width:270px;
+    border:1px solid black;
+    padding:10px;
+  
+}
+.card > img {
+    width:100%;
+    height:120px;
+}
+.restaurant-list{
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+.body-container{
+    margin:10px;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+.search-container{
+    display:flex;
+    gap:10px;
 }
