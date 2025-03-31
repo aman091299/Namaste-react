@@ -6,25 +6,34 @@ const RestaurantMenu =()=>{
      const [restaurant,setRestaurant]=useState([]);
      const [menuList,setMenuList]=useState([])
     const {restaurantId}=useParams();
+    
 
+    const getMenuItems=async()=>{
+        try {
+            const data=await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.473632&lng=78.558398&restaurantId=" + restaurantId + "&catalog_qa=undefined&submitAction=ENTER");
+            const json=await data.json();
+            setMenuList(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards)
+            setRestaurant(json.data.cards[2].card.card.info)
+        } catch (error) {
+            console.log(error)
+        }
+        
+      }
 
  useEffect(()=>{
     getMenuItems();
+    const timer=setInterval(()=>{
+ console.log("hey i am timer");
+    },1000)
+
+    return ()=>{
+        clearInterval(timer);
+     
+     }
+    
  },[])
- 
-  const getMenuItems=async()=>{
-    try {
-        const data=await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.473632&lng=78.558398&restaurantId=" + restaurantId + "&catalog_qa=undefined&submitAction=ENTER");
-        const json=await data.json();
-    
-        console.log(json.data.cards[2].card.card.info);
-        setMenuList(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards)
-        setRestaurant(json.data.cards[2].card.card.info)
-    } catch (error) {
-        console.log(error)
-    }
-    
-  }
+  
+
     return (
     <div>
     <div className="menuList">

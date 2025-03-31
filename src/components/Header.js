@@ -27,6 +27,9 @@ const Header = () => {
           About
           </h4>
           </Link>
+          <Link to="/instamart">
+            <h4>Instamart</h4>
+          </Link>
       
           <h4>Cart</h4>
         </div>

@@ -5,9 +5,9 @@ const Error=()=>{
     console.log(error);
     return(
         <div>
-        <h1>{error.data}</h1>
-          <h1> {error.status}</h1>
-           <h2>{error.statusText}</h2>
+        <h1>{error?.data}</h1>
+          <h1> {error?.status}</h1>
+           <h2>{error?.statusText}</h2>
 
         </div>
     )
