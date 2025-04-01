@@ -56,12 +56,13 @@ const Body = () => {
   }
 
   return (
-    <div className="body-container">
-      <div className="search-container">
+    <div className="m-4">
+      <div className="m-3">
     
         <input
+        className="w-64  border-black border-2 rounded mx-3 p-1"
           type="text"
-          className="search-input"
+         
           placeholder="search"
           value={searchText}
           onChange={(e) => {
@@ -72,7 +73,7 @@ const Body = () => {
           }}
         />
         <button
-          className="search-btn"
+          className="bg-blue-600 rounded text-white p-2 "
           onClick={() => {
             filteringRestaurant(searchText, restaurants);
           }}
@@ -85,11 +86,11 @@ const Body = () => {
       ) : filteredRestaurants?.length === 0 ? (
         <NoFilterData />
       ) : (
-        <div className="restaurant-list">
+        <div className="flex flex-wrap">
           {filteredRestaurants?.map((card) => {
             return (
               <Link to={"/restaurant/" + card?.info.id}  key={card?.info?.id}>
-              <RestaurantCard {...card?.info} />
+              <RestaurantCard {...card?.info}  />
               </Link>
               );
           })}

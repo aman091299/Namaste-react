@@ -14,12 +14,12 @@ import Shimmer from "./components/Shimmer.js";
 
 const Instamart=lazy(()=>import ("./components/Instamart.js"))
 const AppLayout=()=>{
-  return <>
+  return <div >
      <Header/>
-     <Outlet/>
+     <Outlet />
      <Footer/>
    
-  </>
+  </div>
 }
 
 const router=createBrowserRouter([

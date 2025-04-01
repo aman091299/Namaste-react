@@ -13,9 +13,10 @@ const Header = () => {
      }
   }
     return (
-    <div  className='header'>
-        <img className='heading-logo'src="https://lh3.googleusercontent.com/7kfhqCOmv17p7RDVZulmcFmKYiCmF8gYAEGRDOt3mfK8rwH1skFf8n_m3bGmLbnvWAiWVsIFE8Pk2i2ui_dvnpTZI9QSm4ylXQGRVPAjbQ=w360-rw" alt="logo"/>
-        <div className='nav-list'>
+      <div className='  bg-pink-50'>
+    <div  className="mx-4 flex justify-between items-center">
+        <img  src="https://lh3.googleusercontent.com/7kfhqCOmv17p7RDVZulmcFmKYiCmF8gYAEGRDOt3mfK8rwH1skFf8n_m3bGmLbnvWAiWVsIFE8Pk2i2ui_dvnpTZI9QSm4ylXQGRVPAjbQ=w360-rw" className='w-19' alt="logo"/>
+        <div className='flex gap-2'>
         <Link to="/">
         <h3>Home</h3>
         </Link>
@@ -35,7 +36,7 @@ const Header = () => {
         </div>
         {isLogin?( <button onClick={clickHandler}> Logout</button>): <button onClick={clickHandler}>Login </button>}
       
-       
+        </div>
     </div>
     );
   };
