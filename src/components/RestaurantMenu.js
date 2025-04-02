@@ -1,13 +1,15 @@
 import { useState,useEffect } from 'react';
 import {useParams} from 'react-router';
 import {IMG_URL} from '../constants';
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../utils/cartSlice';
 
 const RestaurantMenu =()=>{
 
      const [restaurant,setRestaurant]=useState([]);
      const [menuList,setMenuList]=useState([])
     const {restaurantId}=useParams();
+    const dispatch=useDispatch();
     
 
     const getMenuItems=async()=>{
@@ -21,7 +23,9 @@ const RestaurantMenu =()=>{
         }
         
       }
-
+ function addItem(item){
+    dispatch(addToCart(item))
+ }
  useEffect(()=>{
     getMenuItems();
     const timer=setInterval(()=>{
@@ -50,8 +54,8 @@ const RestaurantMenu =()=>{
 
         <div className="menuList-container">
           Menu list
-         {menuList?.map((card)=>{
-               return(
+         {menuList?.map((card)=>
+               (
                 <div key={card.card.info?.id} className="menuList-items">
                    <div > 
                    <h3>{card.card.info?.name}</h3>
@@ -63,9 +67,11 @@ const RestaurantMenu =()=>{
                    </div>
                   
                    <img className="w-20" src={IMG_URL+card.card.info.imageId} alt="food image" />
+                   <button  className="bg-green-50 p-3 m-2" onClick={()=>addItem(card?.card?.info)}>Add to Cart</button>
                 </div>
+                
                ) 
-         })}
+         )}
         </div>
     </div>)
 }

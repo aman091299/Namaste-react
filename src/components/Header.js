@@ -1,8 +1,11 @@
 import {useState} from 'react';
 import { Link } from 'react-router';
+import {useSelector} from 'react-redux';
 
 const Header = () => {
   const [isLogin,setIsLogin]=useState(false);
+  const cartItems=useSelector(store=>store.cart.items)
+  console.log(cartItems)
   
   const clickHandler=()=>{
      if(!isLogin){
@@ -31,8 +34,10 @@ const Header = () => {
           <Link to="/instamart">
             <h4>Instamart</h4>
           </Link>
-      
-          <h4>Cart</h4>
+          <Link to="/cart">
+          <h4>Cart--{cartItems?.length}</h4>
+          </Link>
+         
         </div>
         {isLogin?( <button onClick={clickHandler}> Logout</button>): <button onClick={clickHandler}>Login </button>}
       

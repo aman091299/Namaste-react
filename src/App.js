@@ -14,6 +14,9 @@ import Section from './components/Section.js'
 // import Instamart from "./components/Instamart.js";
 import Accordian from "./components/Accourdian.js";
 import UserContext from "./utils/UserContext.js";
+import store from  "./utils/store.js"
+import {Provider} from 'react-redux'
+import Cart from "./components/Cart.js";
 
 const Instamart=lazy(()=>import ("./components/Instamart.js"))
 const AppLayout=()=>{
@@ -26,6 +29,7 @@ const AppLayout=()=>{
 
 
   return <div >
+  <Provider store={store}>
   <UserContext.Provider value={{
     user:user,
     setUser
@@ -35,6 +39,7 @@ const AppLayout=()=>{
      <Footer/>
      
   </UserContext.Provider>
+  </Provider>
      
   </div>
 }
@@ -79,10 +84,16 @@ const router=createBrowserRouter([
         path:'restaurant/:restaurantId',
         element:<RestaurantMenu/>
       },
+
       {
         path:'/contact',
         element:<Contact/>
+      },
+      {
+        path:'/cart',
+        element:<Cart/>
       }
+     
     ]
   },
   
