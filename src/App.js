@@ -8,17 +8,34 @@ import RestaurantMenu from './components/RestaurantMenu'
 import {createBrowserRouter, Outlet, RouterProvider} from 'react-router'
 import Error from "./components/Error.js"
 import ProfileClassComponent from "./components/ProfileClassComponent.js";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense,useState } from "react";
 import Shimmer from "./components/Shimmer.js";
+import Section from './components/Section.js'
 // import Instamart from "./components/Instamart.js";
+import Accordian from "./components/Accourdian.js";
+import UserContext from "./utils/UserContext.js";
 
 const Instamart=lazy(()=>import ("./components/Instamart.js"))
 const AppLayout=()=>{
+  
+ console.log("iniside app layout hmm")
+  const [user,setUser]=useState({
+    name:"rishabh",
+    email:"rishabh@gmail.com"
+  });
+
+
   return <div >
-     <Header/>
+  <UserContext.Provider value={{
+    user:user,
+    setUser
+    }}>
+    <Header/>
      <Outlet />
      <Footer/>
-   
+     
+  </UserContext.Provider>
+     
   </div>
 }
 
@@ -29,6 +46,12 @@ const router=createBrowserRouter([
     errorElement: <Error/>,
     
     children:[
+      {
+        path:'/section',
+        element:<Accordian/>
+         ,
+
+    },
       {
           path:'/',
           element:<Body/>,

@@ -5,14 +5,18 @@ import NoFilterData from "./NoFilterData";
 import { swiggyApi } from "../constants";
 import { Link } from "react-router";
 import useOnline from  '../utils/Online'
+import {useContext} from 'react';
+import UserContext from '../utils/UserContext'
 
 const Body = () => {
-
+ 
+  const [inputText,setInputText]=useState('');
   const [searchText, setSearchText] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-
+  console.log("inside body")
+const {user,setUser}=useContext(UserContext)
 
   const filteringRestaurant = (nameOfRestaurant, restaurants) => {
  
@@ -55,10 +59,12 @@ const Body = () => {
     return <h1>🔴 Hey ! Your are offline</h1>
   }
 
+
   return (
+    
     <div className="m-4">
       <div className="m-3">
-    
+          
         <input
         className="w-64  border-black border-2 rounded mx-3 p-1"
           type="text"
@@ -81,6 +87,17 @@ const Body = () => {
           Search
         </button>
       </div>
+    
+      <div>
+      <input type='text' className="bg-pink-50 p-2 m-2" value={inputText} onChange={(e)=>{
+        setInputText(e.target.value);
+        setUser({
+          ...user,name:e.target.value
+        })
+      }
+        } />
+      </div>
+      
       {restaurants?.length === 0 ? (
         <Shimmer />
       ) : filteredRestaurants?.length === 0 ? (

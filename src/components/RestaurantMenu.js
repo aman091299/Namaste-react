@@ -1,8 +1,10 @@
 import { useState,useEffect } from 'react';
 import {useParams} from 'react-router';
-import {IMG_URL} from '../constants'
+import {IMG_URL} from '../constants';
+
 
 const RestaurantMenu =()=>{
+
      const [restaurant,setRestaurant]=useState([]);
      const [menuList,setMenuList]=useState([])
     const {restaurantId}=useParams();
@@ -36,8 +38,9 @@ const RestaurantMenu =()=>{
 
     return (
     <div>
+   
     <div className="menuList">
-    <img src={IMG_URL+restaurant.cloudinaryImageId} alt="rest image"/>
+    <img src={IMG_URL+restaurant.cloudinaryImageId} className="w-20" alt="rest image"/>
     <h1>{restaurant.name}</h1>
         <h3>{restaurant.city}</h3>
         <h4>{restaurant.areaName}</h4>
@@ -59,7 +62,7 @@ const RestaurantMenu =()=>{
 
                    </div>
                   
-                   <img src={IMG_URL+card.card.info.imageId} alt="food image" />
+                   <img className="w-20" src={IMG_URL+card.card.info.imageId} alt="food image" />
                 </div>
                ) 
          })}
